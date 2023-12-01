@@ -1,0 +1,145 @@
+package dia1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+
+public class dia1 {
+   
+static String mem;
+static int[] lista;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        StringTokenizer st;
+        int pr=0;
+        int ul=0;
+        int suma=0;
+        boolean primero=false;
+        
+        while (line!=null) {
+            st = new StringTokenizer(line);
+            mem = st.nextToken();
+            primero=true;
+
+            System.out.println(mem);
+            for (int i = 0; i < mem.length(); i++) {
+
+                if (isNumeric(String.valueOf(mem.charAt(i)))){
+                    if (primero){
+                        pr=Integer.parseInt(String.valueOf(mem.charAt(i)));
+                        primero=false;
+                    }
+                    ul=Integer.parseInt(String.valueOf(mem.charAt(i)));
+                } else {
+                    switch (mem.charAt(i)){
+                        case 'o':
+                            if (i+2<mem.length() && mem.charAt(i+1)== 'n' && mem.charAt(i+2) == 'e') {
+                                if (primero){
+                                    pr=1;
+                                    primero=false;
+                                }
+                                ul=1;
+                            }
+                            break;
+                        case 't':
+                            if (i+2<mem.length() && mem.charAt(i+1)== 'w' && mem.charAt(i+2) == 'o') {
+                                if (primero){
+                                    pr=2;
+                                    primero=false;
+                                }
+                                ul=2;
+                            } else if (i+4<mem.length() && mem.charAt(i+1)== 'h' && mem.charAt(i+2) == 'r' 
+                                && mem.charAt(i+3) == 'e' && mem.charAt(i+4) == 'e') {
+                                    if (primero){
+                                    pr=3;
+                                    primero=false;
+                                }
+                                ul=3;
+                            }
+                            break;
+                        case 'f':
+                            if (i+3<mem.length() && mem.charAt(i+1)== 'o' && mem.charAt(i+2) == 'u'
+                                    && mem.charAt(i+3) == 'r') {
+                                if (primero){
+                                    pr=4;
+                                    primero=false;
+                                }
+                                ul=4;
+                            } else if ( i+3<mem.length() && mem.charAt(i+1)== 'i' && mem.charAt(i+2) == 'v'
+                                    && mem.charAt(i+3) == 'e') {
+                                if (primero){
+                                    pr=5;
+                                    primero=false;
+                                }
+                                ul=5;
+                            }
+                            break;
+
+                        case 's':
+                            if (i+2<mem.length() && mem.charAt(i+1)== 'i' && mem.charAt(i+2) == 'x') {
+                                if (primero){
+                                    pr=6;
+                                    primero=false;
+                                }
+                                ul=6;
+                            } else if (i+4<mem.length() && mem.charAt(i+1)== 'e' && mem.charAt(i+2) == 'v'
+                                && mem.charAt(i+3)== 'e' && mem.charAt(i+4) == 'n'){
+                                    if (primero){
+                                    pr=7;
+                                    primero=false;
+                                }
+                                ul=7;
+                            }
+                            break;
+                        case 'e':
+                            if (i+4< mem.length()) {
+                                if (mem.charAt(i+1)== 'i' && mem.charAt(i+2) == 'g'
+                                && mem.charAt(i+3)== 'h' && mem.charAt(i+4) == 't') {
+                                    if (primero){
+                                        pr=8;
+                                        primero=false;
+                                    }
+                                    ul=8;
+                                }
+                            }
+                            break;
+                        case 'n':
+                            if (i+3<mem.length()) {
+                                if (mem.charAt(i+1)== 'i' && mem.charAt(i+2) == 'n'
+                                && mem.charAt(i+3)== 'e') {
+                                    if (primero){
+                                        pr=9;
+                                        primero=false;
+                                    }
+                                    ul=9;
+                                }
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            suma+=pr*10;
+            suma+=ul;
+            System.out.println(pr*10+ul);
+            
+            line = br.readLine();
+            
+        }
+        System.out.println(suma);
+        
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false; //Error no es numerico
+        }
+        return true; //Es numerico
+    }
+}
